@@ -57,7 +57,7 @@ app.post("/getData", (req, res) => {
       
 });
 app.get("/deleteAll",(req,res)=>{
-  writeFile(path.resolve(__dirname, "Indata.json"),JSON.stringify([]),()=>{
+  writeFile(path.resolve(__dirname, "Indata.json"),JSON.stringify([{name:"unknown"}]),()=>{
     res.send("MESSAGES DELETED")
   })
 })
