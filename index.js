@@ -61,6 +61,12 @@ app.get("/deleteAll",(req,res)=>{
     res.send("MESSAGES DELETED")
   })
 })
+app.get("/getAll",(req,res)=>{
+  readFile(path.resolve(__dirname, "Indata.json"), (err, result) => {
+    iData = JSON.parse(result);
+    res.json(iData)
+  });
+})
 app.listen(9000,()=>{
   console.log("starting server on port 9000");
   
