@@ -61,4 +61,7 @@ app.get("/deleteAll",(req,res)=>{
     res.send("MESSAGES DELETED")
   })
 })
-app.listen(1000)
+app.listen(9000,()=>{
+  console.log("starting server on port 9000");
+  
+})
