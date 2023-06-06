@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="/css/index.css">
+<body>
+    <h1>School Admission Form</h1>
+    <form action="/login" method="POST" >
+        <div>
+            Student's name: <input name="Student" type="text" id="stName" required>
+        </div>
+        <br>
+        <div>
+            Student's Age: <input type="number">
+        </div>
+        <br>
+        <div>
+            Student's Gender: <input type="radio" name="gender" value="PURUSH">Male
+            <input type="radio" name="gender" value="MAHILA">Female
+        </div>
+        <br>
+        <div>
+            BUS SERVICE REQUIRED <input type="checkbox" name="TRANSPORT" value="BUS">
+            TUTION REQUIRED      <input type="checkbox" name="TUTOR" value="TUTION">
+        </div>
+        <br>
+        <div>
+            I AM FROM :
+            <select name="selected city" id="" required> 
+                <option value="selectone">select one</option>
+
+            <optgroup name="opt1" label="uttar pradesh">
+                <option name="VARANASI"  value="VARANASI">VARANASI</option>
+                <option name="mgs"value="MUGHALSARAI">MUGHALSARAI</option>
+            </optgroup>
+            
+            <optgroup label="jharkhand">
+                <option value="JAMSHEDPUR">JAMSHEDPUR</option>
+                <option value="BUXAR">BUXAR</option>
+                <option value="BILASPUR">BILASPUR</option>
+            </optgroup>
+
+                <option value="NONE">NONE</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit">
+                give submission
+        </button>
+        <input type="reset" value="reset" id="reset">
+        <a href="/get.html">Get Your Data</a>
+        <a href="/deleteAll">DELETE ALL</a>
+    </form>
+</body>
+
+
+<script src="/index.js">
+</script>
+</html>

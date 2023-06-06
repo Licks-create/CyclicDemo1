@@ -1,0 +1,12 @@
+form{
+    background-color: aqua;
+    width: 60%;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 100px auto;
+}
+[type="submit"]
+{
+    display: block;
+    margin: 10px auto 0px;
+}
