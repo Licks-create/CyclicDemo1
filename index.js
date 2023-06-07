@@ -14,63 +14,20 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "public")));
 const people=require('./public/data')
 const user=require('./user')
-var iData = 0;
-readFile(path.resolve(__dirname, "Indata.json"), (err, res) => {
-  iData = JSON.parse(res);
-});
-mongoose.set('strictQuery', true);
+var iData; 
+app.use('/login',require('./submit'))
+mongoose.set('strictQuery', true); 
 const main=async function () {
   try{
 
     let x=await mongoose.connect(process.env.MONGO_URI);
-    // console.log(`Mongo connected ${conn.connection.host}`)
     return x;
   }
   catch(err)
   {
-    console.log(err);
     process.exit(1);    
   }
 }
-
-
-
-
-
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "index.html"));
-});
-app.get("/get.html", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "get.html"));
-});
-
-
-
-app.post("/login",async (req, res) => {
-  const testing = req.body;
-  console.log(testing); 
-  iData=await user.find();
-  if (testing) {
-    if (iData.find((x) => x.StName === testing.Student))
-      return res.status(200).send({
-          Value: `Name Must be different so go back and fill the form again`,
-        });
-    else {
-      const u1=new user({
-        StName:testing.Student,StGender:testing.gender,
-        address:{
-          state:"UP",
-          city:testing.selectedCity
-        }
-      })
-      u1.save()
-      iData.push(testing);
-      writeFile(path.resolve(__dirname, "Indata.json"),JSON.stringify(iData),()=>{});
-    }
-    return res.status(200).redirect("/");
-  }
-  // console.log("no body", req.body);
-});
 
 app.get('/test',async(req,res)=>{
   res.send(await user.find())
@@ -89,27 +46,36 @@ app.post("/getData", async(req, res) => {
       console.log(req.body);
       
 });
-app.get("/deleteAll",async (req,res)=>{
-  try{
+app.post("/deleteAll",async (req,res)=>{
+
+  if(req.body.password==='goluojha')
+ { try{
    const data = await user.deleteMany({})
-   console.log('started');
+   console.log('started',req.body);
    res.json({message:"all deleted"})
   } catch(err)
   {
     console.log(err.message); 
-  }
+  }}
+  else
+  res.send("Wrong Password")
   })
 
 
-app.get("/getAll",async (req,res)=>{
+app.post("/getAll",async (req,res)=>{
+  if(req.body.password==='goluojha')
   try{
-   const data = await user.find({},{_id:0,__v:0,address:{_id:0}})
+   const data = await user.find({},{_id:0,__v:0})
    console.log('started');
    res.json(data)
   } catch(err)
-  {
+  { 
     console.log(err.message); 
-  }
+  } 
+
+  else
+  res.send("Wrong Password")
+  
   })
 
 main().then((x)=>{

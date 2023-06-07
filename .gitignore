@@ -2,3 +2,4 @@ node_modules
 # Local Netlify folder
 node_modules
 .env
+/uploads
