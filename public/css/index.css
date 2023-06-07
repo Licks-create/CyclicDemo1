@@ -13,3 +13,11 @@ a{
     padding: 5px;
     border-radius: 10px;
 }
+h1{
+    width: 60%;
+    margin: 10px auto;
+    text-align: center;
+    background-color: cornsilk;
+    border-radius: 10px;
+    outline: 2px double rgb(22, 19, 19);
+}

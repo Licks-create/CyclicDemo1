@@ -23,7 +23,7 @@ const main=async function () {
   try{
 
     let x=await mongoose.connect(process.env.MONGO_URI);
-    console.log(`Mongo connected ${conn.connection.host}`)
+    // console.log(`Mongo connected ${conn.connection.host}`)
     return x;
   }
   catch(err)
@@ -88,10 +88,13 @@ app.post("/login", (req, res) => {
 app.get('/test',(req,res)=>{
   res.send(people)
 })
-app.post("/getData", (req, res) => {
+
+
+app.post("/getData", async(req, res) => {
      const name=req.body.unique 
-     if (found=iData.find((x) => x.Student === name)) {
-        return res.status(200).json(found);
+     const found=await user.find({StName:name},{_id:0})
+     if (found.length) {
+        return res.status(200).send(found);
       }  
       else
       res.send("we have not found any!!")
@@ -99,16 +102,24 @@ app.post("/getData", (req, res) => {
       console.log(req.body);
       
 });
-app.get("/deleteAll",(req,res)=>{
-  writeFile(path.resolve(__dirname, "Indata.json"),JSON.stringify([{name:"unknown"}]),()=>{
-    res.send("MESSAGES DELETED")
-  })
-})
-app.get("/getAll", (req,res)=>{
+app.get("/deleteAll",async (req,res)=>{
   try{
-    user.find({},(err,value)=>{
-      res.json(value)
-    })
+   const data = await user.deleteMany({})
+   console.log('started');
+   res.json({message:"all deleted"})
+  } catch(err)
+  {
+    console.log(err.message); 
+  }
+  })
+
+
+
+app.get("/getAll",async (req,res)=>{
+  try{
+   const data = await user.find({},{_id:0,__v:0,address:{_id:0}})
+   console.log('started');
+   res.json(data)
   } catch(err)
   {
     console.log(err.message); 
