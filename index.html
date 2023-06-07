@@ -8,15 +8,16 @@
 </head>
 <link rel="stylesheet" href="/css/index.css">
 <body>
-    <h1>School Admission Form</h1>
-    <form action="/login" method="POST" >
-        <div>
-            Student's name: <input name="Student" type="text" id="stName" required>
-        </div>
-        <br>
-        <div>
-            Student's Age: <input type="number">
-        </div>
+    <div>
+        <h1>School Admission Form</h1>
+        <form action="/login" method="POST" >
+            <div>
+                Student's name: <input name="Student" type="text" id="stName" required>
+            </div>
+            <br>
+            <div>
+                Student's Age: <input type="number">
+            </div>
         <br>
         <div>
             Student's Gender: <input type="radio" name="gender" value="PURUSH">Male
@@ -32,30 +33,31 @@
             I AM FROM :
             <select name="selectedCity" id="" required> 
                 <option value="selectone">select one</option>
-
-            <optgroup name="opt1" label="uttar pradesh">
-                <option name="VARANASI"  value="VARANASI">VARANASI</option>
-                <option name="mgs"value="MUGHALSARAI">MUGHALSARAI</option>
-            </optgroup>
-            
-            <optgroup label="jharkhand">
-                <option value="JAMSHEDPUR">JAMSHEDPUR</option>
-                <option value="BUXAR">BUXAR</option>
-                <option value="BILASPUR">BILASPUR</option>
-            </optgroup>
-
+                
+                <optgroup name="opt1" label="uttar pradesh">
+                    <option name="VARANASI"  value="VARANASI">VARANASI</option>
+                    <option name="mgs"value="MUGHALSARAI">MUGHALSARAI</option>
+                </optgroup>
+                
+                <optgroup label="jharkhand">
+                    <option value="JAMSHEDPUR">JAMSHEDPUR</option>
+                    <option value="BUXAR">BUXAR</option>
+                    <option value="BILASPUR">BILASPUR</option>
+                </optgroup>
+                
                 <option value="NONE">NONE</option>
             </select>
         </div>
         <br>
         <button type="submit">
-                give submission
+            give submission
         </button>
         <input type="reset" value="reset" id="reset">
         <a href="/get.html">Get Your Data</a>
         <a href="/deleteAll">DELETE ALL</a>
         <a href="/getAll">get ALL</a>
     </form>
+</div>
 </body>
 
 

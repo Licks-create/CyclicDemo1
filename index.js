@@ -33,21 +33,7 @@ const main=async function () {
   }
 }
 
-try{
 
-  const u1=new user({
-    StName:"vivek",StGender:"male",
-    address:{
-      state:"UP",
-      city:"ddu"
-    }
-  })
-  u1.save().then(()=>{console.log('saeved',u1)})
-
-}
-catch(err){
-  console.log(err.message);  
-}
 
 
 
@@ -60,11 +46,12 @@ app.get("/get.html", (req, res) => {
 
 
 
-app.post("/login", (req, res) => {
+app.post("/login",async (req, res) => {
   const testing = req.body;
   console.log(testing); 
+  iData=await user.find();
   if (testing) {
-    if (iData.find((x) => x.Student === testing.Student))
+    if (iData.find((x) => x.StName === testing.Student))
       return res.status(200).send({
           Value: `Name Must be different so go back and fill the form again`,
         });
@@ -82,18 +69,18 @@ app.post("/login", (req, res) => {
     }
     return res.status(200).redirect("/");
   }
-  console.log("no body", req.body);
+  // console.log("no body", req.body);
 });
 
-app.get('/test',(req,res)=>{
-  res.send(people)
+app.get('/test',async(req,res)=>{
+  res.send(await user.find())
 })
 
 
 app.post("/getData", async(req, res) => {
      const name=req.body.unique 
      const found=await user.find({StName:name},{_id:0})
-     if (found.length) {
+     if (found.length) { 
         return res.status(200).send(found);
       }  
       else
@@ -112,7 +99,6 @@ app.get("/deleteAll",async (req,res)=>{
     console.log(err.message); 
   }
   })
-
 
 
 app.get("/getAll",async (req,res)=>{
